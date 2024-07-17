@@ -1,0 +1,515 @@
+/* list */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    background-color: white;
+    height: 5vh;
+  }
+  
+  .userLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+  }
+  
+  .user-logout {
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: white;
+  }
+  
+  .user-logout:hover {
+    background-color: gray;
+  }
+  
+  .standard {
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: darkcyan;
+    color: white;
+  }
+  
+  .standard:hover {
+    background-color: rgb(0, 77, 77);
+  }
+  
+  .display {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .header-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+  }
+  
+  .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .title span {
+    font-size: 40px;
+    color: red;
+  }
+  
+  .shukka-jisseki-btn {
+    padding: 5px 10px;
+    background-color: green;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .shukka-jisseki-btn:hover {
+    background-color: darkgreen;
+  }
+  
+  .search {
+    padding: 10px 30px;
+    display: block;
+    justify-content: center;
+  }
+  
+  .search-default {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+  }
+  
+  .search-advanced {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: height 0.5s ease, opacity 0.5s ease, visibility 0.5s;
+  }
+  
+  .search-advanced.show {
+    height: auto;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .show-search-advanced {
+    padding: 5px 20px;
+    background-color: darkcyan;
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  
+  .btn-showSearch {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .show-search-advanced:hover {
+    background-color: rgb(0, 77, 77);
+  }
+  
+  
+  .label-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+  }
+  
+  .data-item-search {
+    padding: 0 10px;
+    width: 70%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .title-item-search {
+    width: 200px;
+  }
+  
+  select {
+    min-width: 100px;
+  }
+  
+  .table {
+    margin-top: 10px;
+    max-width: 90%;
+    padding: 0 10%;
+  }
+  
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  .table table {
+    border: 2px solid darkcyan;
+    border-collapse: collapse;
+  }
+  
+  .table th {
+    background-color: darkcyan;
+    color: white;
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid white;
+    padding: 5px 10px;
+    white-space: nowrap;
+    text-align: center;
+  }
+  
+  .search-advanced {
+    display: none;
+  }
+  
+  .search-btn {
+    padding: 5px 20px;
+    background-color: darkcyan;
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+  
+  .search-btn:hover {
+    background-color: rgb(0, 77, 77);
+  }
+  
+  .btn-show-search {
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  /* jiseeki */
+  .popup-create {
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.726);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .popup-create.show {
+    display: block;
+    opacity: 1;
+  }
+  
+  .body-create {
+    margin: 2% 5%;
+    background-color: #f4f4f4;
+    width: 90%;
+    height: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .popup-create.show .body-create {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  .create-title {
+    border-radius: 10px;
+    background-color: white;
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+  }
+  
+  .close-btn {
+    border: none;
+    background-color: white;
+  }
+  
+  .close-btn:hover {
+    color: red;
+  }
+  
+  .create-header {
+    padding: 10px 10%;
+  }
+  
+  .header-create-item {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid white;
+  }
+  
+  .data-create-item {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 5px 0;
+    gap: 10px;
+  }
+  
+  .span-number {
+    width: 50px;
+  }
+  
+  .header-item-name {
+    width: 200px;
+  }
+  
+  .create-header-advanced {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .create-header-advanced.show {
+    display: block;
+    opacity: 1;
+  }
+  
+  .create-btn-show-advanced {
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .btn-show-advanced-popup {
+    padding: 5px 30px;
+    background-color: darkcyan;
+    color: white;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+  
+  .table-create .table-container {
+    max-height: 150px;
+    overflow-y: scroll;
+  }
+  
+  .add-column-create {
+    padding: 10px 0;
+  }
+  
+  .btn-add-column {
+    padding: 2px 10px;
+    background-color: darkcyan;
+    color: white;
+    border-radius: 5px;
+  }
+  .btn-add-column:hover{
+    background-color: rgb(0, 77, 77);
+  }
+  
+  .calculate-kingaku {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 20px;
+    padding-top: 10px;
+  }
+  
+  .comment {
+    display: block;
+    justify-content: left;
+    align-items: center;
+    margin-top: 5px;
+  }
+  
+  .shukka-create-comment {
+    width: 100%;
+    border-radius: 5px;
+    height: 40px;
+  }
+  
+  .gokei-kingaku-title {
+    color: red;
+  }
+  
+  .confirm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding-top: 10px;
+  }
+  
+  .btn-entry {
+    background-color: green;
+    color: #f4f4f4;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  .btn-cancel {
+    background-color: orange;
+    color: #f4f4f4;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+  
+  .btn-entry:hover {
+    background-color: darkgreen;
+  }
+  
+  .btn-cancel:hover {
+    background-color: darkorange;
+  }
+  
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type="number"] {
+    -moz-appearance: textfield;
+    text-align: center;
+  }
+  
+  /* table create detail */
+  .text-name input {
+    border: none;
+  }
+  
+  #seihin-mei-detail {
+    border: none;
+  }
+  
+  #suryo-detail {
+    width: 50px !important;
+    
+  }
+  
+  #kingaku-detail {
+    width: 50px !important;
+    border: none !important;
+  }
+  
+  #memo-ran-detail {
+    width: 300px;
+  }
+  
+  #tanka-detail{
+    width: 50px;
+  }
+  
+  /* table list */
+  
+  #kanri-bango-list {
+    min-width: 100px;
+    width: auto;
+  }
+  
+  #jokyo-list {
+    min-width: 50px;
+    width: auto;
+  }
+  
+  #shukka-yotei-bi-list {
+    min-width: 150px;
+    width: auto;
+  }
+  
+  #shukka-jisseki-bi-list {
+    min-width: 50px;
+    width: auto;
+  }
+  
+  #hikiate-list {
+    min-width: 250px;
+    width: auto;
+  }
+  
+  #kenmei-list {
+    min-width: 200px;
+    width: auto;
+  }
+  
+  #torihikisaki-list {
+    min-width: 80px;
+    width: auto;
+  }
+  
+  #yotei-suu-list {
+    min-width: 80px;
+    width: auto;
+  }
+  
+  #jisseki-suu-list {
+    min-width: 80px;
+    width: auto;
+  }
+  
+  #zan-suu-list {
+    min-width: 100px;
+    width: auto;
+  }
+  
+  #souko-list {
+    min-width: 100px;
+    width: auto;
+  }
+  
+  #tanaban-list {
+    min-width: 100px;
+    width: auto;
+  }
+  
+  #tantosha-list {
+    min-width: 100px;
+    width: auto;
+  }
+  
+  .navbar {
+    height: 100vh;
+    width: 15%;
+    background-color: darkcyan;
+  }
+  
+  .body-list {
+    width: 85%;
+    height: 100vh;
+  }
+  .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
