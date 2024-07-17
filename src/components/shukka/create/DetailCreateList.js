@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import DetailRow from './DetailRow';
+import { API_BASE_URL } from '../../../constants';
 
 export default function DetailCreateList({ setJuchuKingaku }) {
     const [seihinList, setSeihinList] = useState([]);
@@ -14,7 +15,7 @@ export default function DetailCreateList({ setJuchuKingaku }) {
         // api get list seihin
         const fetchSeihin = async () => {
             try {
-                const response = await axios.get('http://10.1.38.194:8080/seihin/get-list');
+                const response = await axios.get(`${API_BASE_URL}/seihin/get-list`);
                 setSeihinList(response.data);
             } catch (error) {
                 console.log('Error fetching seihin:', error);
@@ -24,7 +25,7 @@ export default function DetailCreateList({ setJuchuKingaku }) {
         // api get list souko
         const fetchSouko = async () => {
             try {
-                const response = await axios.get('http://10.1.38.194:8080/souko/get-list');
+                const response = await axios.get(`${API_BASE_URL}/souko/get-list`);
                 setSoukoList(response.data);
             } catch (error) {
                 console.log('Error fetching souko:', error);

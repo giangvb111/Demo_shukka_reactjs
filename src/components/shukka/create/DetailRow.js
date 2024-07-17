@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
+import { API_BASE_URL } from '../../../constants';
 
 
 export default function DetailRow({ seihinList, soukoList, rowIndex, updateTotalKingaku }) {
@@ -20,7 +21,7 @@ export default function DetailRow({ seihinList, soukoList, rowIndex, updateTotal
     const handleChangeSouko = async (event) => {
         const selectedSoukoId = event.target.value;
         try {
-            const response = await axios.get(`http://10.1.38.194:8080/tanaban/get-tanaban-by-souko-id?soukoId=${selectedSoukoId}`);
+            const response = await axios.get(`${API_BASE_URL}/tanaban/get-tanaban-by-souko-id?soukoId=${selectedSoukoId}`);
             setTanabanList(response.data);
         } catch (error) {
             console.log('Error fetching tanaban:', error);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import DetailCreateList from './DetailCreateList'
 import axios from 'axios'
 import PopUpConfirm from './PopUpConfirm'
+import { API_BASE_URL } from '../../../constants';
 
 
 export default function CreateShukka() {
@@ -15,7 +16,7 @@ export default function CreateShukka() {
   useEffect(() => {
     const fetchNouhinsaki = async () => {
       try {
-        const response = await axios.get('http://10.1.38.194:8080/nouhinsaki/get-list');
+        const response = await axios.get(`${API_BASE_URL}/nouhinsaki/get-list`);
         setNouhinsakiList(response.data.data);
       } catch (error) {
         console.log('Error fetching souko:', error);
@@ -24,7 +25,7 @@ export default function CreateShukka() {
 
     const fetchTantosha = async () => {
       try {
-        const response = await axios.get('http://10.1.38.194:8080/tantosha/get-tantosha-by-taishoku-flg?taishokuFlg=0');
+        const response = await axios.get(`${API_BASE_URL}/tantosha/get-tantosha-by-taishoku-flg?taishokuFlg=0`);
         setTantoshaList(response.data.data);
       } catch (error) {
         console.log('Error fetching souko:', error);
