@@ -330,6 +330,7 @@ export default function SearchShukkaList() {
                 }
 
                 {showCreateShukka && <CreateShukka onClose={handleClosePopup}
+                    setShowCreateShukka={setShowCreateShukka}
                 // showCreateShukka={showCreateShukka} 
                 />}
 

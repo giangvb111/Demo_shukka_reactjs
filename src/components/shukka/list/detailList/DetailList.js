@@ -8,12 +8,13 @@ export default function DetailList(props) {
         <>
             {searchResults.map((result, rowIndex) => (
                 <tr key={rowIndex}>
-                    <td><input id={`checkbox-data-${rowIndex}`} type="checkbox" /></td>
+                    <td style={{ width: 25 + 'px' }}><input id={`checkbox-data-${rowIndex}`} type="checkbox" /></td>
                     {column.map((column, columnIndex) => (
                         <td
                             key={`${rowIndex}-${columnIndex}`}
                             style={{
-                                display: column.columnWidth === 0 ? 'none' : 'table-cell'
+                                display: column.columnWidth === 0 ? 'none' : 'table-cell',
+                                width: column.columnWidth
                             }}
                         >
                             {result[column.columnDisplayName]}

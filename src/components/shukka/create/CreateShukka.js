@@ -6,7 +6,7 @@ import SearchShukkaList from '../list/SearchShukkaList'
 import { API_BASE_URL } from '../../../constants';
 
 
-export default function CreateShukka({ onClose }) {
+export default function CreateShukka({ onClose, setShowCreateShukka }) {
 
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [redirectToSearch, setRedirectToSearch] = useState(false);
@@ -18,7 +18,7 @@ export default function CreateShukka({ onClose }) {
 
   const [shukkaHeader, setShukkaHeader] = useState(
     {
-      shukkaNo: '出荷ヘッダ',
+      shukkaNo: '出荷No',
       jyuchubi: '',
       shukkaYoteibi: '',
       shukkaJisseikiBi: '',
@@ -41,6 +41,7 @@ export default function CreateShukka({ onClose }) {
       shukkaJisseikiSuryo: '',
       soukoId: '',
       tanabanId: '',
+      tanabanName: [],
       lotNo: '',
       tanka: '',
       kingaku: '',
@@ -116,6 +117,7 @@ export default function CreateShukka({ onClose }) {
         shukkaJisseikiSuryo: '',
         soukoId: '',
         tanabanId: '',
+        tanabanName: [],
         lotNo: '',
         tanka: '',
         kingaku: '',
@@ -138,8 +140,6 @@ export default function CreateShukka({ onClose }) {
 
   //出荷登録
   const handleBtnEntryData = async () => {
-
-    console.log('vao day 122313');
 
     let hasError = false;
 
@@ -176,6 +176,7 @@ export default function CreateShukka({ onClose }) {
       }
 
     });
+    console.log("shuka", shukkaDto);
 
     // Nếu có lỗi, dừng lại và không gọi hàm đăng ký
     if (hasError) {
@@ -189,17 +190,17 @@ export default function CreateShukka({ onClose }) {
 
     try {
       const res = await axios.post(`${API_BASE_URL}/shukka/create`, shukkaDto)
+
       if (res.data.status === 1) {
         setIsPopupVisible(false);
         setRedirectToSearch(true);
+        setShowCreateShukka(false)
       } else {
         console.log("error", res.message);
       }
     } catch (error) {
       console.log("error catch =>>", error)
     }
-    console.log(redirectToSearch);
-
   }
 
   const handleClosePopup = () => {

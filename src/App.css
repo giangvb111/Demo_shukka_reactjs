@@ -99,24 +99,15 @@ body {
 }
 
 .search-advanced {
-  display: block;
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 10%;
-  height: auto;
-  opacity: 1;
-  visibility: visible;
-  overflow: hidden;
-  transition: height 0.5s ease, opacity 0.5s ease, visibility 0.5s;
 }
 
 
 
-.search-advanced.show {
-  height: auto;
-  opacity: 1;
-  visibility: visible;
-}
+
 
 .show-search-advanced {
   padding: 5px 20px;
@@ -183,16 +174,22 @@ select {
   color: white;
 }
 
-.table th,
+.table th {
+  border: 1px solid white;
+  padding: 10px 10px;
+  white-space: nowrap;
+  text-align: center;
+}
+
 .table td {
   border: 1px solid white;
-  padding: 5px 10px;
+  padding: 15px 10px;
   white-space: nowrap;
   text-align: center;
 }
 
 .search-advanced {
-  display: none;
+  display: flex;
 }
 
 .search-btn {
@@ -420,7 +417,7 @@ input[type="number"] {
 
 .error-message {
   text-align: left;
-  max-height: 60px;
+  max-height: 40px;
   overflow-y: scroll;
   color: red;
   display: block;
@@ -432,23 +429,15 @@ input[type="number"] {
   border: none;
 }
 
-#suryo-detail {
-  width: 50px !important;
-
-}
+#suryo-detail {}
 
 #kingaku-detail {
-  width: 50px !important;
   border: none !important;
 }
 
-#memo-ran-detail {
-  width: 300px;
-}
+#memo-ran-detail {}
 
-#tanka-detail {
-  width: 50px;
-}
+#tanka-detail {}
 
 .navbar {
   height: 100vh;
@@ -529,4 +518,13 @@ input[type="number"] {
 
 .modal-btn-confirm-ok:hover {
   background-color: darkgreen;
+}
+
+.table-container table {
+  width: 100%;
+}
+
+.table-list-shukka {
+  max-height: 550px;
+  overflow-y: scroll;
 }

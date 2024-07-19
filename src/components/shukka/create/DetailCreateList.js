@@ -46,6 +46,7 @@ export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, 
                 shukkaJisseikiSuryo: '',
                 soukoId: '',
                 tanabanId: '',
+                tanabanName: [],
                 lotNo: '',
                 tanka: '',
                 kingaku: '',
@@ -70,6 +71,7 @@ export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, 
                 soukoId: '',
                 seihinName: '',
                 tanabanId: '',
+                tanabanName: [],
                 lotNo: '',
                 tanka: '',
                 kingaku: 0,
@@ -81,7 +83,10 @@ export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, 
 
     const handleShukkaMesaiChange = (index, name, value) => {
         const updatedList = [...shukkaMesaiList];
+        console.log(1111, name, value, updatedList);
         updatedList[index][name] = value;
+        console.log(222, name, value, updatedList);
+
         setShukkaMesaiList(updatedList);
 
         // Kiểm tra và cập nhật lại message nếu thông tin hợp lệ
@@ -115,7 +120,7 @@ export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, 
         console.log("selectedSeihin", selectedSeihin);
         handleShukkaMesaiChange(index, 'seihinId', selectedSeihinId);
         handleShukkaMesaiChange(index, 'seihinName', selectedSeihin ? selectedSeihin.seihinName : '');
-        console.log('vao day 5');
+        console.log('vao day 5 ', shukkaMesaiList);
     };
 
     // get list tanaban when change souko
@@ -126,12 +131,13 @@ export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, 
             console.log(response.data);
             const updatedTanabanList = [...tanabanList];
             updatedTanabanList[index] = response.data;
-
+            handleShukkaMesaiChange(index, 'tanabanName', response.data);
             setTanabanList(response.data);
         } catch (error) {
             console.log('Error fetching tanaban:', error);
         }
         handleShukkaMesaiChange(index, 'soukoId', selectedSoukoId);
+        console.log('vao day 6 ', shukkaMesaiList);
     };
 
     const handleChangeTanka = (index, event) => {
@@ -237,8 +243,8 @@ export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, 
                                         }}
                                     >
                                         <option value=""></option>
-                                        {tanabanList.map(item => (
-                                            <option key={item.tanabanId} value={item.tanabanId}>{item.tanabanName}</option>
+                                        {item.tanabanName.map(item1 => (
+                                            <option key={item1.tanabanId} value={item1.tanabanId}>{item1.tanabanName}</option>
                                         ))}
                                     </select>
                                 </td>

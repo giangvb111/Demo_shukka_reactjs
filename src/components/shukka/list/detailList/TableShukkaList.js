@@ -8,7 +8,7 @@ export default function TableShukkaList(props) {
   // console.log("columns ==>>", columns);
 
   return (
-    <div className="table table-list">
+    <div className="table table-list table-list-shukka">
       <div className="table-container">
         <table>
           <thead>
