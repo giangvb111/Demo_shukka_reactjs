@@ -91,18 +91,19 @@ export default function SearchShukkaList() {
         }
     }
 
-
     useEffect(() => {
         fetchNouhinsakiList();
         fetchTantoshaList();
         fetchSoukoList();
         fetchColumns(1);
-    }, [searchResults])
+    }, [])
 
     const handleOnchangeSouko = (event) => {
         const selectedSoukoId = event.target.value;
-        if (selectedSoukoId === '') {
+        console.log("selectedSoukoId", selectedSoukoId);
+        if (selectedSoukoId == '') {
             setTanabanList([])
+            setShukkaTanabanList()
         } else {
             fetchTanabanList(selectedSoukoId);
         }

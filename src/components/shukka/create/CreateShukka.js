@@ -14,7 +14,31 @@ export default function CreateShukka({ onClose, setShowCreateShukka }) {
   const [nouhinsakiList, setNouhinsakiList] = useState([])
   const [tantoshaList, setTantoshaList] = useState([])
   const [message, setMessage] = useState([])
+  // const createBtnAdvanced = document.querySelector('.btn-show-advanced-popup');
+  // const createDisplayAdvanced = document.querySelector('.create-header-advanced');
 
+  // const handleCreateBtnAdvancedClick = () => {
+  //   console.log('hfjdsfh');
+
+  //   if (createDisplayAdvanced.classList.contains('show')) {
+  //     createDisplayAdvanced.classList.remove('show');
+  //     setTimeout(() => {
+  //       createDisplayAdvanced.style.display = 'none';
+  //     }, 0);
+  //   } else {
+  //     createDisplayAdvanced.style.display = 'block';
+  //     setTimeout(() => {
+  //       createDisplayAdvanced.classList.add('show');
+  //     }, 10);
+  //   }
+  // };
+
+  // if (createBtnAdvanced) {
+  //   createBtnAdvanced.addEventListener('click', handleCreateBtnAdvancedClick);
+  // }
+  // if (createBtnAdvanced) {
+  //   createBtnAdvanced.removeEventListener('click', handleCreateBtnAdvancedClick);
+  // }
 
   const [shukkaHeader, setShukkaHeader] = useState(
     {
@@ -51,7 +75,7 @@ export default function CreateShukka({ onClose, setShowCreateShukka }) {
 
   const handleOnchangeShukkaHeader = (event) => {
     const { name, value } = event.target;
-    const updatedList = setShukkaHeader((prevState) => ({
+    setShukkaHeader((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -118,6 +142,7 @@ export default function CreateShukka({ onClose, setShowCreateShukka }) {
         soukoId: '',
         tanabanId: '',
         tanabanName: [],
+        seihinName: '',
         lotNo: '',
         tanka: '',
         kingaku: '',
@@ -126,7 +151,6 @@ export default function CreateShukka({ onClose, setShowCreateShukka }) {
     ]);
 
     setMessage([]);
-    console.log('vao day');
   }, [API_BASE_URL])
 
   const shukkaDto = {
@@ -178,7 +202,6 @@ export default function CreateShukka({ onClose, setShowCreateShukka }) {
     });
     console.log("shuka", shukkaDto);
 
-    // Nếu có lỗi, dừng lại và không gọi hàm đăng ký
     if (hasError) {
       return;
     }
@@ -239,7 +262,7 @@ export default function CreateShukka({ onClose, setShowCreateShukka }) {
             {/* <!-- 受注日 --> */}
             <div className="header-create-item">
               <span className="span-number">1</span>
-              <span className="header-item-name">受注日*</span>
+              <span className="header-item-name">受注日<span style={{ color: 'red' }}>*</span></span>
               <span>
                 <input
                   type="date"
@@ -254,7 +277,7 @@ export default function CreateShukka({ onClose, setShowCreateShukka }) {
             {/* <!-- 出荷予定日* --> */}
             <div className="header-create-item">
               <span className="span-number">2</span>
-              <span className="header-item-name">出荷予定日*</span>
+              <span className="header-item-name">出荷予定日<span style={{ color: 'red' }}>*</span></span>
               <span>
                 <input
                   type="date"
@@ -270,7 +293,7 @@ export default function CreateShukka({ onClose, setShowCreateShukka }) {
             {/* <!-- 納品先* --> */}
             <div className="header-create-item">
               <span className="span-number">3</span>
-              <span className="header-item-name">納品先*</span>
+              <span className="header-item-name">納品先<span style={{ color: 'red' }}>*</span></span>
               <span>
                 <select name="nouhinsakiId" id="nohin-saki-header-create"
                   value={shukkaHeader.nouhinsakiId}
@@ -281,6 +304,15 @@ export default function CreateShukka({ onClose, setShowCreateShukka }) {
                     <option key={item.nouhinsakiId} value={item.nouhinsakiId}>{item.nouhinsakiName}</option>
                   ))}
                 </select>
+              </span>
+
+
+              {/* <span className="header-item-name">納品先<span style={{ color: 'red' }}>*</span></span> */}
+              <span style={{ paddingLeft: 140 + 'px' }}>
+                <span style={{ paddingRight: 20 + 'px' }}>(</span>
+                <span style={{ paddingRight: 30 + 'px' }}>請求先</span>
+                <input disabled style={{ width: 90 + 'px', backgroundColor: '#3533333b' }} />
+                <span style={{ paddingLeft: 20 + 'px' }}>)</span>
               </span>
             </div>
 

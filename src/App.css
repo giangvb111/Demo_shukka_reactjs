@@ -75,10 +75,11 @@ body {
 }
 
 .shukka-jisseki-btn {
-  padding: 5px 10px;
+  padding: 7px 15px;
   background-color: green;
   color: white;
   border-radius: 5px;
+  font-size: medium;
 }
 
 .shukka-jisseki-btn:hover {
@@ -89,6 +90,16 @@ body {
   padding: 10px 30px;
   display: block;
   justify-content: center;
+  border: 1px solid #000;
+  border-radius: 2ch;
+  padding: 10px;
+  margin: 0px 150px;
+
+  /*display: flex;
+  justify-content: left;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid white; */
 }
 
 .search-default {
@@ -96,6 +107,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 10%;
+  /* border-bottom: 1px solid white; */
 }
 
 .search-advanced {
@@ -103,11 +115,8 @@ body {
   justify-content: center;
   align-items: center;
   gap: 10%;
+  /* border-bottom: 1px solid white; */
 }
-
-
-
-
 
 .show-search-advanced {
   padding: 5px 20px;
@@ -135,6 +144,8 @@ body {
   justify-content: center;
   align-items: center;
   width: 500px;
+  padding: 5px;
+  border-bottom: 1px solid white;
 }
 
 .data-item-search {
@@ -160,9 +171,7 @@ select {
   padding: 0 10%;
 }
 
-.table-container {
-  overflow-x: auto;
-}
+.table-container {}
 
 .table table {
   border: 2px solid darkcyan;
@@ -172,6 +181,8 @@ select {
 .table th {
   background-color: darkcyan;
   color: white;
+  position: sticky;
+  top: -1px;
 }
 
 .table th {
@@ -186,6 +197,7 @@ select {
   padding: 15px 10px;
   white-space: nowrap;
   text-align: center;
+  overflow-x: auto;
 }
 
 .search-advanced {
@@ -300,15 +312,15 @@ select {
 }
 
 .create-header-advanced {
-  display: block;
+  display: none;
   opacity: 1;
   transition: opacity 0.5s ease;
 }
 
-/* .create-header-advanced.show {
+.create-header-advanced.show {
   display: block;
   opacity: 1;
-} */
+}
 
 .create-btn-show-advanced {
   padding: 10px 0;
@@ -322,6 +334,10 @@ select {
   color: white;
   border-radius: 5px;
   font-size: 12px;
+}
+
+.btn-show-advanced-popup:hover {
+  background-color: rgb(0, 77, 77);
 }
 
 .table-create .table-container {
@@ -378,6 +394,7 @@ select {
 }
 
 .btn-entry {
+  width: 80px;
   background-color: green;
   color: #f4f4f4;
   border-radius: 5px;
@@ -429,20 +446,20 @@ input[type="number"] {
   border: none;
 }
 
-#suryo-detail {}
 
 #kingaku-detail {
   border: none !important;
 }
 
-#memo-ran-detail {}
-
-#tanka-detail {}
-
 .navbar {
   height: 100vh;
   width: 15%;
   background-color: darkcyan;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  /* display: flex;
+  align-items: center; */
 }
 
 .body-list {

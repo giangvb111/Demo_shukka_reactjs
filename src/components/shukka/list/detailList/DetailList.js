@@ -3,7 +3,6 @@ import React from 'react'
 export default function DetailList(props) {
     const { searchResults, column } = props;
     console.log("column : ", column);
-
     return (
         <>
             {searchResults.map((result, rowIndex) => (

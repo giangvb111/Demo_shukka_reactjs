@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
-import DetailRow from './DetailRow';
 import { API_BASE_URL } from '../../../constants';
 
 export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, setMessage }) {
 
     const [seihinList, setSeihinList] = useState([]);
     const [soukoList, setSoukoList] = useState([]);
-    const [tanabanList, setTanabanList] = useState([]);
-    const [seihinName, setSeihinName] = useState('');
     const [juchuKingaku, setJuchuKingaku] = useState('');
     const [shohizeiGaku, setShohizeiGaku] = useState(3);
     const [gokeiKingaku, setGokeiKingaku] = useState('');
@@ -54,9 +51,7 @@ export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, 
             }
         ]);
         setMessage([]);
-        setSeihinName('');
         setJuchuKingaku('');
-        setTanabanList([]);
     }, []);
 
     //handle add column 
@@ -88,7 +83,6 @@ export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, 
         console.log(222, name, value, updatedList);
 
         setShukkaMesaiList(updatedList);
-
         // Kiểm tra và cập nhật lại message nếu thông tin hợp lệ
         validateEntries(updatedList);
         console.log('vao day 3');
@@ -116,7 +110,6 @@ export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, 
     const handleChangeSeihin = (index, event) => {
         const selectedSeihinId = event.target.value;
         const selectedSeihin = seihinList.find(item => item.seihinId == selectedSeihinId);
-        // setSeihinName(selectedSeihin ? selectedSeihin.seihinName : '');
         console.log("selectedSeihin", selectedSeihin);
         handleShukkaMesaiChange(index, 'seihinId', selectedSeihinId);
         handleShukkaMesaiChange(index, 'seihinName', selectedSeihin ? selectedSeihin.seihinName : '');
@@ -126,18 +119,18 @@ export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, 
     // get list tanaban when change souko
     const handleChangeSouko = async (index, event) => {
         const selectedSoukoId = event.target.value;
-        try {
-            const response = await axios.get(`${API_BASE_URL}/tanaban/get-tanaban-by-souko-id?soukoId=${selectedSoukoId}`);
-            console.log(response.data);
-            const updatedTanabanList = [...tanabanList];
-            updatedTanabanList[index] = response.data;
-            handleShukkaMesaiChange(index, 'tanabanName', response.data);
-            setTanabanList(response.data);
-        } catch (error) {
-            console.log('Error fetching tanaban:', error);
+        if (selectedSoukoId === '') {
+            handleShukkaMesaiChange(index, 'tanabanName', []);
+        } else {
+            try {
+                const response = await axios.get(`${API_BASE_URL}/tanaban/get-tanaban-by-souko-id?soukoId=${selectedSoukoId}`);
+                handleShukkaMesaiChange(index, 'tanabanName', response.data);
+            } catch (error) {
+                console.log('Error fetching tanaban:', error);
+            }
+            handleShukkaMesaiChange(index, 'soukoId', selectedSoukoId);
         }
-        handleShukkaMesaiChange(index, 'soukoId', selectedSoukoId);
-        console.log('vao day 6 ', shukkaMesaiList);
+
     };
 
     const handleChangeTanka = (index, event) => {
@@ -164,8 +157,7 @@ export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, 
             return acc + kingakuNumber;
         }, 0);
         setJuchuKingaku(newTotalKingaku);
-        console.log('vao day 4');
-    }, []);
+    }, [shukkaMesaiList]);
 
     useEffect(() => {
         setGokeiKingaku((isNaN(juchuKingaku) ? 0 : juchuKingaku + shohizeiGaku))
@@ -175,6 +167,8 @@ export default function DetailCreateList({ shukkaMesaiList, setShukkaMesaiList, 
         <div>
             <div className="add-column-create">
                 <button onClick={handleAddButton} className="btn-add-column">追加</button>
+                <button style={{ marginLeft: 20, marginRight: 20 }} className="btn-copy">行複写</button>
+                <button className="btn-copy">行削除</button>
             </div>
             <div className="table-container">
                 <table id='table-create-shukka'>

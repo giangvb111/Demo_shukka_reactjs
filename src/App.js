@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import './App.css';
 import SearchShukkaList from './components/shukka/list/SearchShukkaList';
+import Sidebar from './components/page/Sidebar.js';
 
 function App() {
-
 
   useEffect(() => {
     const checkAll = document.getElementById('check-all');
     const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
-
+    const createBtnAdvanced = document.querySelector('.btn-show-advanced-popup');
+    const createDisplayAdvanced = document.querySelector('.create-header-advanced');
 
     // Functionality for checkAll checkbox
     const handleCheckAllChange = () => {
@@ -24,6 +25,27 @@ function App() {
         checkAll.checked = true;
       }
     };
+
+    //Functionality for show/hide button advanced popup create
+    const handleCreateBtnAdvancedClick = () => {
+      console.log('hfjdsfh');
+
+      if (createDisplayAdvanced.classList.contains('show')) {
+        createDisplayAdvanced.classList.remove('show');
+        setTimeout(() => {
+          createDisplayAdvanced.style.display = 'none';
+        }, 0);
+      } else {
+        createDisplayAdvanced.style.display = 'block';
+        setTimeout(() => {
+          createDisplayAdvanced.classList.add('show');
+        }, 10);
+      }
+    };
+
+    if (createBtnAdvanced) {
+      createBtnAdvanced.addEventListener('click', handleCreateBtnAdvancedClick);
+    }
 
     if (checkAll) {
       checkAll.addEventListener('change', handleCheckAllChange);
@@ -71,6 +93,9 @@ function App() {
       checkboxes.forEach((checkbox) => {
         checkbox.removeEventListener('change', handleCheckboxChange);
       });
+      if (createBtnAdvanced) {
+        createBtnAdvanced.removeEventListener('click', handleCreateBtnAdvancedClick);
+      }
     };
   }, []);
 
@@ -91,7 +116,7 @@ function App() {
       <div className="container">
 
         <div className='navbar'>
-
+          <Sidebar />
         </div>
         <div className='body-list'>
 
