@@ -14,7 +14,9 @@ export default function DetailRow({ seihinList, soukoList, rowIndex, updateTotal
     const handleChangeSeihin = (event) => {
         const selectedSeihinId = event.target.value;
         const selectedSeihin = seihinList.find(item => item.seihinId === selectedSeihinId);
+        console.log(selectedSeihin);
         setSeihinName(selectedSeihin ? selectedSeihin.seihinName : '');
+
     };
 
     // get list tanaban when change souko

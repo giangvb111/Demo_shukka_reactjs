@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function PopUpConfirm() {
+export default function PopUpConfirm({ onClose, handleEntryData }) {
   return (
     <div className='popup-confirm'>
       <div className='modal-body-confirm'>
@@ -13,8 +13,8 @@ export default function PopUpConfirm() {
           <hr />
         </div>
         <div className='modal-footer-confirm'>
-          <button className='modal-btn-confirm-ok'>OK</button>
-          <button className='modal-btn-confirm-cancel'>キャンセル</button>
+          <button className='modal-btn-confirm-ok' onClick={handleEntryData}>OK</button>
+          <button className='modal-btn-confirm-cancel' onClick={onClose}>キャンセル</button>
         </div>
       </div>
     </div>

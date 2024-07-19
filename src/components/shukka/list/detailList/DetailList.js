@@ -1,26 +1,27 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-export default function DetailList() {
-
-    const [shukkaDetailList, setShukkaDetailList] = useState([])
+export default function DetailList(props) {
+    const { searchResults, column } = props;
+    console.log("column : ", column);
 
     return (
-        <tr>
-            <td><input id="checkbox-data" type="checkbox" /></td>
-            <td id='kanri-bango-list'>hihi</td>
-            <td id='jokyo-list'>hihi</td>
-            <td id='shukka-yotei-bi-list'>hihi</td>
-            <td id='shukka-jisseki-bi-list'>hihi</td>
-            <td id='hikiate-list'>hihi</td>
-            <td id='kenmei-list'>hihi</td>
-            <td id='torihikisaki-list'>hihi</td>
-            <td id='yotei-suu-list'>hihi</td>
-            <td id='jisseki-suu-list'>hihi</td>
-            <td id='zan-suu-list'>hihi</td>
-            <td id='souko-list'>hihi</td>
-            <td id='tanaban-list'>hihi</td>
-            <td id='tantosha-list'>hihi</td>
-
-        </tr>
-    )
+        <>
+            {searchResults.map((result, rowIndex) => (
+                <tr key={rowIndex}>
+                    <td><input id={`checkbox-data-${rowIndex}`} type="checkbox" /></td>
+                    {column.map((column, columnIndex) => (
+                        <td
+                            key={`${rowIndex}-${columnIndex}`}
+                            style={{
+                                display: column.columnWidth === 0 ? 'none' : 'table-cell'
+                            }}
+                        >
+                            {result[column.columnDisplayName]}
+                        </td>
+                    ))}
+                </tr>
+            ))}
+        </>
+    );
 }
+
